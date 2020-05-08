@@ -1,142 +1,119 @@
 #include <cstdio>
+#include <cstring>
 
-enum board_t {
-    QU,         // queen
-    NQ          // not queen
-};
+#define QU '*'
+#define NQ '.'
 
 struct coord_t {
     int r;
     int c;
+
+	bool operator== (coord_t const &other) {
+		return this->r == other.r && this->c == other.c;
+	}
 };
 
-inline bool valid_coord(struct coord_t const &c) {
+inline bool is_valid(coord_t co) {
     return
-        c.r >= 0 &&
-        c.r < 8 &&
-        c.c >= 0 &&
-        c.c < 8;
-}
-
-// modes
-//  0: up left
-//  1: up right
-//  2: down right
-//  3: down left
-//  other values: invalid
-inline void advance(int mode, struct coord_t &to, struct coord_t const &from) {
-    switch (mode)
-    {
-    case 0:
-        to.r = from.r - 1;
-        to.c = from.c - 1;
-        break;
-    
-    case 1:
-        to.r = from.r - 1;
-        to.c = from.c + 1;
-        break;
-    
-    case 2:
-        to.r = from.r + 1;
-        to.c = from.c + 1;
-        break;
-    
-    case 3:
-        to.r = from.r + 1;
-        to.c = from.c - 1;
-        break;
-    
-    default:
-        break;
-    }
+        co.r >= 0 && co.r < 8 &&
+        co.c >= 0 && co.c < 8;
 }
 
 inline void invalid() {
-    fputs_unlocked("invalid", stdout);
+    puts("invalid");
 }
 
 inline void valid() {
-    fputs_unlocked("valid", stdout);
-}
-
-inline void get_row(char *row) {
-    fgets_unlocked(row, 9, stdin);
-    getc_unlocked(stdin); // discard \n
+    puts("valid");
 }
 
 int main() {
-    board_t board[8][8];
-    struct coord_t queens[8];
-    size_t queens_top = 0;
+    char board[8][8];
+	coord_t queens[8];
+	size_t c_queens = 0;	// count of detected queens
 
+    // Input rows
     for (size_t r = 0; r < 8; ++r) {
-        char row[9];
-        get_row(row);
-        for (size_t c = 0; c < 8; ++c) {
-            if (row[c] == '*') {
-                board[r][c] = QU;
-                queens[queens_top].r = r;
-                queens[queens_top].c = c;
-                ++queens_top;
-            }
-            else {
-                board[r][c] = NQ;
-            }
-        }
+		// includes 8-sequence of '*'|'.' and then \0.
+		char line[9];
+		fgets(line, 9, stdin);
+		getchar();
+
+		// the first eight characters are copied onto board[r].
+		memcpy(board[r], line, 8);
+
+		// detect the queen(s) in each row
+		// say invalid if more than one queen found
+		bool queen_found = false;
+		for (size_t c = 0; c < 8; ++c) {
+			if (board[r][c] == QU) {
+				if (queen_found) {
+					invalid();
+					return 0;
+				}
+				queen_found = true;
+				queens[c_queens].r = r;
+				queens[c_queens].c = c;
+				++c_queens;
+			}
+		}
     }
 
-    // Are there exactly eight queens?
-    if (queens_top != 8) {
-        invalid();
-        return 0;
-    }
+	// There must be exactly 8 queens.
+	if (c_queens != 8) {
+		invalid();
+		return 0;
+	}
 
-    // Solve rook problem
-    for (size_t r = 0; r < 8; ++r) {
-        bool queen_found = false;
-        for (size_t c = 0; c < 8; ++c) {
-            if (board[r][c] == QU) {
-                if (queen_found) {
-                    invalid();
-                    return 0;
-                }
-                queen_found = true;
-            }
-        }
-    }
-    for (size_t c = 0; c < 8; ++c) {
-        bool queen_found = false;
-        for (size_t r = 0; r < 8; ++r) {
-            if (board[r][c] == QU) {
-                if (queen_found) {
-                    invalid();
-                    return 0;
-                }
-                queen_found = true;
-            }
-        }
-    }
+	// Detect whether there are more than one queen in any column.
+	bool column_queen_found[8] = {0};   // true if a queen found in column c; false otherwise.
+	for (size_t q = 0; q < c_queens; ++q) {
+		if (column_queen_found[queens[q].c]) {
+			invalid();
+			return 0;
+		}
+		else {
+			column_queen_found[queens[q].c] = true;
+		}
+	}
 
-    // Solve diagonal problem
-    for (size_t i_queen = 0; i_queen < 8; ++i_queen) {
-        struct coord_t new_adv = queens[i_queen];
-        for (int mode = 0; mode < 4; ) {
-            advance(mode, new_adv, new_adv);
-            if (valid_coord(new_adv)) {
-                if (board[new_adv.r][new_adv.c] == QU) {
-                    invalid();
-                    return 0;
-                }
-            }
-            else {
-                ++mode;
-                break;
-            }
-        }
-    }
+	// Detect whether there are queens in the diagonal lines from any queen.
+	for (size_t q = 0; q < c_queens; ++q) {
+		for (size_t dir = 0; dir < 4; ++dir) {
+			for (size_t mag = 1; ; ++mag) {
+				coord_t adv = queens[q];
+				switch (dir) {
+				case 0:
+					adv.r -= mag;
+					adv.c -= mag;
+					break;
+				case 1:
+					adv.r -= mag;
+					adv.c += mag;
+					break;
+				case 2:
+					adv.r += mag;
+					adv.c += mag;
+					break;
+				case 3:
+					adv.r += mag;
+					adv.c -= mag;
+					break;
+				}
+				if (!is_valid(adv)) {
+					break;
+				}
+				for (size_t oq = 0; oq < c_queens; ++oq) {
+					if (queens[oq] == adv) {
+						invalid();
+						return 0;
+					}
+				}
+			}
+		}
+	}
 
-    // If cannot find problem, then valid.
-    valid();
-    return 0;
+	// All conditions meet.
+	valid();
+	return 0;
 }
