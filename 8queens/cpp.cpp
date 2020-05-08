@@ -2,22 +2,15 @@
 #include <cstring>
 
 #define QU '*'
-#define NQ '.'
 
 struct coord_t {
     int r;
     int c;
 
-	bool operator== (coord_t const &other) {
+	inline bool operator== (coord_t const &other) {
 		return this->r == other.r && this->c == other.c;
 	}
 };
-
-inline bool is_valid(coord_t co) {
-    return
-        co.r >= 0 && co.r < 8 &&
-        co.c >= 0 && co.c < 8;
-}
 
 inline void invalid() {
     puts("invalid");
@@ -28,7 +21,6 @@ inline void valid() {
 }
 
 int main() {
-    char board[8][8];
 	coord_t queens[8];
 	size_t c_queens = 0;	// count of detected queens
 
@@ -37,16 +29,13 @@ int main() {
 		// includes 8-sequence of '*'|'.' and then \0.
 		char line[9];
 		fgets(line, 9, stdin);
-		getchar();
-
-		// the first eight characters are copied onto board[r].
-		memcpy(board[r], line, 8);
+		getchar();	// consume \n
 
 		// detect the queen(s) in each row
 		// say invalid if more than one queen found
 		bool queen_found = false;
 		for (size_t c = 0; c < 8; ++c) {
-			if (board[r][c] == QU) {
+			if (line[c] == QU) {
 				if (queen_found) {
 					invalid();
 					return 0;
@@ -86,21 +75,30 @@ int main() {
 				case 0:
 					adv.r -= mag;
 					adv.c -= mag;
+					if (adv.r < 0 || adv.c < 0) {
+						goto when_invalid;
+					}
 					break;
 				case 1:
 					adv.r -= mag;
 					adv.c += mag;
+					if (adv.r < 0 || adv.c >= 8) {
+						goto when_invalid;
+					}
 					break;
 				case 2:
 					adv.r += mag;
 					adv.c += mag;
+					if (adv.r >= 8 || adv.c >= 8) {
+						goto when_invalid;
+					}
 					break;
 				case 3:
 					adv.r += mag;
 					adv.c -= mag;
-					break;
-				}
-				if (!is_valid(adv)) {
+					if (adv.r >= 8 || adv.c < 0) {
+						goto when_invalid;
+					}
 					break;
 				}
 				for (size_t oq = 0; oq < c_queens; ++oq) {
@@ -109,6 +107,9 @@ int main() {
 						return 0;
 					}
 				}
+				continue;
+				when_invalid:
+					break;
 			}
 		}
 	}
