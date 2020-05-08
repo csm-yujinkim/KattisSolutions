@@ -2,40 +2,39 @@
 #include <set>
 #include <iostream>
 #include <sstream>
-#include <cctype>
 
 using namespace std;
 
 int main()
 {
-    for (;;)
+    for (size_t n_customers; cin >> n_customers, n_customers;)
     {
-        map<string, set<string>> items_per_customer;
-        size_t n_customers;
-        std::cin >> n_customers;
-        if (!n_customers)
-        {
-            break;
-        }
-        string line;
-        cin.ignore(1, '\n');
+        // unprocessed \n, discard
+        cin.get();
+
+        map<string, set<string>> assoc;
+
         for (size_t c = 0; c < n_customers; ++c)
         {
-            getline(cin, line);
-            stringstream in_line(line);
             string customer;
-            in_line >> customer;
-            for (string item; in_line >> item;)
+            cin >> customer;
+            // unprocessed \n, discard
+            cin.get();
+            string line_items;
+            getline(cin, line_items);
+            istringstream make_toks(line_items);
+            for (string item; make_toks >> item;)
             {
-                items_per_customer[item].insert(customer);
+                assoc[item].insert(customer);
             }
         }
-        for (const auto &it : items_per_customer)
+
+        for (auto const &[customer, items] : assoc)
         {
-            cout << it.first;
-            for (const string &customer : it.second)
+            cout << customer;
+            for (string const &item : items)
             {
-                cout << ' ' << customer;
+                cout << ' ' << item;
             }
             cout << '\n';
         }
