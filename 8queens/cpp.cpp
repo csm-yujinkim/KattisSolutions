@@ -1,7 +1,4 @@
 #include <cstdio>
-#include <cstring>
-
-#define QU '*'
 
 struct coord_t {
     int r;
@@ -35,7 +32,7 @@ int main() {
 		// say invalid if more than one queen found
 		bool queen_found = false;
 		for (size_t c = 0; c < 8; ++c) {
-			if (line[c] == QU) {
+			if (line[c] == '*') {
 				if (queen_found) {
 					invalid();
 					return 0;
