@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9a4ebf14-90a6-4efb-8578-c79b5f94e764" name="Default Changelist" comment="Probably working prototype for empleh (F#)" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F1F01BF0-47F4-3136-B90D-A0590C91572C/3/seq.fs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/FA872DDE-CD31-E6E4-A84D-A1B21152D419/bf/1b177d1b/02000002pdb.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/scratches/strrev.fsx" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/FA872DDE-CD31-E6E4-A84D-A1B21152D419/1e/6754482e/02000015pdb.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.fs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/strrev.fsx" />
+        <option value="$PROJECT_DIR$/Program.fs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1chq7UhhPM47qjmKdYxYDLCUm27" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35013032" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29973936" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.environmentSetup" />
+  </component>
+  <component name="RunManager">
+    <configuration name="empleh-fsharp" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/empleh-fsharp.fsproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a4ebf14-90a6-4efb-8578-c79b5f94e764" name="Default Changelist" comment="" />
+      <created>1590991007460</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590991007460</updated>
+      <workItem from="1590991022368" duration="4239000" />
+      <workItem from="1591038233074" duration="4813000" />
+    </task>
+    <task id="LOCAL-00001" summary="Probably working prototype for empleh (F#)">
+      <created>1591043097919</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591043097919</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Probably working prototype for empleh (F#)">
+      <created>1591043323096</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1591043323097</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Probably working prototype for empleh (F#)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Probably working prototype for empleh (F#)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="431" y="123" key="#xdebugger.evaluate" timestamp="1591041711311">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state x="431" y="123" key="#xdebugger.evaluate/56.23.1224.777@56.23.1224.777" timestamp="1591041711311" />
+    <state x="386" y="252" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1" timestamp="1590998985351">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="386" y="252" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.RiderCodeCleanupAction$actionPerformed$dlg$1/0.0.1280.800@0.0.1280.800" timestamp="1590998985351" />
+    <state width="479" height="464" key="DebuggerActiveHint" timestamp="1591039731806">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="479" height="464" key="DebuggerActiveHint/56.23.1224.777@56.23.1224.777" timestamp="1591039731806" />
+    <state width="1182" height="273" key="GridCell.Tab.0.bottom" timestamp="1591043346407">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.0.bottom/56.23.1224.777@56.23.1224.777" timestamp="1591043346407" />
+    <state width="1182" height="273" key="GridCell.Tab.0.center" timestamp="1591043346406">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.0.center/56.23.1224.777@56.23.1224.777" timestamp="1591043346406" />
+    <state width="1182" height="273" key="GridCell.Tab.0.left" timestamp="1591043346406">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.0.left/56.23.1224.777@56.23.1224.777" timestamp="1591043346406" />
+    <state width="1182" height="273" key="GridCell.Tab.0.right" timestamp="1591043346407">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.0.right/56.23.1224.777@56.23.1224.777" timestamp="1591043346407" />
+    <state width="1182" height="273" key="GridCell.Tab.1.bottom" timestamp="1591043346408">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.1.bottom/56.23.1224.777@56.23.1224.777" timestamp="1591043346408" />
+    <state width="1182" height="273" key="GridCell.Tab.1.center" timestamp="1591043346408">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.1.center/56.23.1224.777@56.23.1224.777" timestamp="1591043346408" />
+    <state width="1182" height="273" key="GridCell.Tab.1.left" timestamp="1591043346407">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.1.left/56.23.1224.777@56.23.1224.777" timestamp="1591043346407" />
+    <state width="1182" height="273" key="GridCell.Tab.1.right" timestamp="1591043346408">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.1.right/56.23.1224.777@56.23.1224.777" timestamp="1591043346408" />
+    <state width="1182" height="273" key="GridCell.Tab.2.bottom" timestamp="1591043346409">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.2.bottom/56.23.1224.777@56.23.1224.777" timestamp="1591043346409" />
+    <state width="1182" height="273" key="GridCell.Tab.2.center" timestamp="1591043346409">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.2.center/56.23.1224.777@56.23.1224.777" timestamp="1591043346409" />
+    <state width="1182" height="273" key="GridCell.Tab.2.left" timestamp="1591043346408">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.2.left/56.23.1224.777@56.23.1224.777" timestamp="1591043346408" />
+    <state width="1182" height="273" key="GridCell.Tab.2.right" timestamp="1591043346409">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.2.right/56.23.1224.777@56.23.1224.777" timestamp="1591043346409" />
+    <state width="1182" height="273" key="GridCell.Tab.3.bottom" timestamp="1591043346411">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.3.bottom/56.23.1224.777@56.23.1224.777" timestamp="1591043346411" />
+    <state width="1182" height="273" key="GridCell.Tab.3.center" timestamp="1591043346410">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.3.center/56.23.1224.777@56.23.1224.777" timestamp="1591043346410" />
+    <state width="1182" height="273" key="GridCell.Tab.3.left" timestamp="1591043346410">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.3.left/56.23.1224.777@56.23.1224.777" timestamp="1591043346410" />
+    <state width="1182" height="273" key="GridCell.Tab.3.right" timestamp="1591043346410">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.3.right/56.23.1224.777@56.23.1224.777" timestamp="1591043346410" />
+    <state width="1182" height="273" key="GridCell.Tab.4.bottom" timestamp="1591043346412">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.4.bottom/56.23.1224.777@56.23.1224.777" timestamp="1591043346412" />
+    <state width="1182" height="273" key="GridCell.Tab.4.center" timestamp="1591043346411">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.4.center/56.23.1224.777@56.23.1224.777" timestamp="1591043346411" />
+    <state width="1182" height="273" key="GridCell.Tab.4.left" timestamp="1591043346411">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.4.left/56.23.1224.777@56.23.1224.777" timestamp="1591043346411" />
+    <state width="1182" height="273" key="GridCell.Tab.4.right" timestamp="1591043346412">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="1182" height="273" key="GridCell.Tab.4.right/56.23.1224.777@56.23.1224.777" timestamp="1591043346412" />
+    <state width="612" height="388" key="XDebugger.FullValuePopup" timestamp="1591039729880">
+      <screen x="56" y="23" width="1224" height="777" />
+    </state>
+    <state width="612" height="388" key="XDebugger.FullValuePopup/56.23.1224.777@56.23.1224.777" timestamp="1591039729880" />
+  </component>
+</project>

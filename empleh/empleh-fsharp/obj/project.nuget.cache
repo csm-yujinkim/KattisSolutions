@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Etexd9KArbzGzEuISnsM9Pe22tHA+Jc7lYquPPgbqFuisZt67mqicI7uDRibp3ZRxw3TGuF7Gn5Yf6NXYJSYJA==",
+  "success": true,
+  "projectFilePath": "/Users/yujinkim/Documents/KattisSolutions/empleh/empleh-fsharp/empleh-fsharp.fsproj",
+  "expectedPackageFiles": [
+    "/Users/yujinkim/.nuget/packages/fsharp.core/4.7.0/fsharp.core.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
