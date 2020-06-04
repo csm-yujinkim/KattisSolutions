@@ -37,14 +37,14 @@ namespace algorithm {
         char pop() {
             size_t const lowest_count = *counts.begin();
             assert(lowest_count);
-            size_t const lower_count = lowest_count - 1uL;
             std::set<char> &set = freqs.at(lowest_count);
             char const removal = *set.begin();
-            set.erase(*set.begin());
+            set.erase(set.begin());
             --size_m;
             if (set.empty()) {
-                counts.erase(lowest_count);
+                counts.erase(counts.begin());
             }
+            size_t const lower_count = lowest_count - 1uL;
             if (lower_count) {
                 counts.insert(lower_count);
                 freqs[lower_count].insert(removal);
