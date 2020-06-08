@@ -13,18 +13,18 @@ struct edge_t {
 };
 
 static std::pair<std::vector<bool>, std::vector<ssize_t>>
-bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes) {
+bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes, ssize_t source) {
     std::vector<bool> inclusion(n_nodes, true);
     std::vector<ssize_t> distances(n_nodes, INF);
     bool iter_update_made = false;
-    distances[0uL] = 0L;
+    distances[source] = 0L;
 
     size_t nm1 = n_nodes - 1uL;
     for (size_t i = 0uL; i < nm1; ++i) {
         for (auto const &edge : edges) {
             ssize_t const early_estimate = distances[edge.to];
             ssize_t const newer_estimate = edge.weight + distances[edge.from];
-            if (newer_estimate < early_estimate) {
+            if (distances[edge.from] != INF && newer_estimate < early_estimate) {
                 distances[edge.to] = newer_estimate;
                 iter_update_made = true;
             }
@@ -37,10 +37,10 @@ bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes) {
 
     std::vector<ssize_t> distances_check_copy = distances;
     for (auto const &edge : edges) {
-        ssize_t const over_estimate = distances_check_copy[edge.to];
-        ssize_t const under_estimate = edge.weight + distances_check_copy[edge.from];
-        if (under_estimate < over_estimate) {
-            distances_check_copy[edge.to] = under_estimate;
+        ssize_t const early_estimate = distances_check_copy[edge.to];
+        ssize_t const newer_estimate = edge.weight + distances_check_copy[edge.from];
+        if (distances_check_copy[edge.from] != INF && newer_estimate < early_estimate) {
+            distances_check_copy[edge.to] = newer_estimate;
             inclusion[edge.to] = false;
         }
         // else = exactly when detecting a vertex on negative cycle.
@@ -75,7 +75,7 @@ int main() {
             queries.push_back(v);
         }
 
-        auto const &[inclusion, minimum] = bellman_ford(edges, n_nodes);
+        auto const &[inclusion, minimum] = bellman_ford(edges, n_nodes, source);
         for (size_t v : queries) {
             if (inclusion[v]) {
                 ssize_t distance = minimum[v];
