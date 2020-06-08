@@ -28,10 +28,10 @@ bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes, size_t sour
                 distances[edge.to] = newer_estimate;
                 iter_update_made = true;
             }
-            // Early exit
-            if (!iter_update_made) {
-                return std::make_pair(inclusion, distances);
-            }
+        }
+        // Early exit
+        if (!iter_update_made) {
+            return std::make_pair(inclusion, distances);
         }
     }
 
