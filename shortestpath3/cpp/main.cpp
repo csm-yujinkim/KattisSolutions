@@ -13,7 +13,7 @@ struct edge_t {
 };
 
 static std::pair<std::vector<bool>, std::vector<ssize_t>>
-bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes, ssize_t source) {
+bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes, size_t source) {
     std::vector<bool> inclusion(n_nodes, true);
     std::vector<ssize_t> distances(n_nodes, INF);
     bool iter_update_made = false;
