@@ -4,3 +4,10 @@
 40
 20
 21
+
+Impossible
+0
+Impossible
+50
+10
+11
