@@ -20,9 +20,8 @@ bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes, ssize_t sou
     std::vector<bool> inclusion(n_nodes, true);
     distances[source] = 0L;
 
-    size_t nm1 = n_nodes - 1uL;
     bool iter_stay = true;
-    for (size_t i = 0uL; i < nm1; ++i) {
+    for (size_t i = 1uL; i < n_nodes; ++i) {
         for (auto const &edge : edges) {
             ssize_t const early_estimate = distances[edge.to];
             ssize_t const newer_estimate = edge.weight + distances[edge.from];
@@ -41,7 +40,7 @@ bellman_ford(std::vector<edge_t> const &edges, size_t const n_nodes, ssize_t sou
         bool cycle_exists = false;
         std::vector<ssize_t> chain{i};
         ssize_t x = predecessor[i];
-        while (x != -1) {
+        while (x != UNDEFINED_PREDECESSOR) {
             if (std::any_of(chain.cbegin(), chain.cend(), [x](ssize_t y) { return x == y; })) {
                 chain.push_back(x);
                 cycle_exists = true;
