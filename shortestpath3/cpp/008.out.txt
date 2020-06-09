@@ -1,0 +1,14 @@
+0
+10
+20
+32
+27
+42
+
+0
+-Infinity
+-Infinity
+-Infinity
+-Infinity
+-Infinity
+
