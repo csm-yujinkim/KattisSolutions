@@ -9,7 +9,7 @@ static void print_names(std::vector<std::string> const &names, std::vector<size_
     std::cout << '\n';
 }
 
-static void print_subsets(std::vector<std::string> const &names, std::vector<size_t> const &indices) {
+static void print_subsets(std::vector<std::string> const &names, std::vector<size_t> &indices) {
     if (indices.empty()) {
         for (size_t i = 0uL; i < names.size(); ++i) {
             std::vector<size_t> singleton{i};
@@ -25,9 +25,9 @@ static void print_subsets(std::vector<std::string> const &names, std::vector<siz
         print_names(names, indices);
         if (!new_indices.empty()) {
             for (size_t i : new_indices) {
-                auto old_copy = indices;
-                old_copy.push_back(i);
-                print_subsets(names, old_copy);
+                indices.push_back(i);
+                print_subsets(names, indices);
+                indices.pop_back();
             }
         }
     }
