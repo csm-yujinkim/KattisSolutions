@@ -47,7 +47,7 @@ namespace help {
                 rightmost_endpoint = std::max(rightmost_endpoint, n.end);
             }
         }
-        return leftmost_endpoint <= range.start && range.end <= rightmost_endpoint;
+        return interval(leftmost_endpoint, rightmost_endpoint).covers(range);
     }
 
     static std::vector<interval> forward_difference(interval minuend, interval subtrahend) {
