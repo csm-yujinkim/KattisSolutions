@@ -20,7 +20,10 @@ struct interval {
 namespace help {
     struct scratch {
         std::list<ssize_t> indices;
-        std::vector<interval> intervals;
+        std::vector<interval> const intervals;
+
+        scratch(std::list<ssize_t> indices, std::vector<interval> intervals) : indices(std::move(indices)),
+                                                                               intervals(std::move(intervals)) {}
     };
 
     static std::pair<ssize_t, interval>
@@ -73,3 +76,4 @@ namespace help {
         return resultants;
     }
 }
+
