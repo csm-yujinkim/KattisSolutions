@@ -18,11 +18,16 @@ struct interval {
 };
 
 namespace help {
+    struct scratch {
+        std::list<ssize_t> indices;
+        std::vector<interval> intervals;
+    };
+
     static std::pair<ssize_t, interval>
-    max_cover(std::list<ssize_t> const &indices, std::vector<interval> const &intervals, interval range) {
+    max_cover(scratch const &s, interval range) {
         double max_coverage = -1.0;
         ssize_t max_index = -1L, index = 0L;
-        for (interval i : intervals) {
+        for (interval i : s.intervals) {
             double const coverage = std::max(0.0, std::min(i.end, range.end) - std::min(i.start, range.start));
             if (max_coverage < coverage) {
                 max_coverage = coverage;
@@ -30,7 +35,7 @@ namespace help {
             }
             ++index;
         }
-        return std::make_pair(max_index, intervals[max_index]);
+        return std::make_pair(max_index, s.intervals[max_index]);
     }
 
     static bool strictly_disjoint(interval a, interval b) {
@@ -38,11 +43,11 @@ namespace help {
     }
 
     static bool
-    union_covers(std::list<ssize_t> const &indices, std::vector<interval> const &intervals, interval range) {
+    union_covers(scratch const &s, interval range) {
         double leftmost_endpoint, rightmost_endpoint;
         {
-            for (ssize_t const i : indices) {
-                interval const n = intervals[i];
+            for (ssize_t const i : s.indices) {
+                interval const n = s.intervals[i];
                 leftmost_endpoint = std::min(leftmost_endpoint, n.start);
                 rightmost_endpoint = std::max(rightmost_endpoint, n.end);
             }
