@@ -35,13 +35,13 @@ namespace help {
     // 2. Returns the index (now invalid);
     // 3. Returns what was stored at the index.
     static std::pair<ssize_t, interval>
-    max_cover(problem &s, interval range) {
+    max_cover(problem &s) {
         double max_coverage = -1.0;
         auto it = s.indices.begin();
         auto max_it = s.indices.end();
         ssize_t max_index = -1L, index = 0L;
         for (interval i : s.intervals) {
-            double const coverage = std::max(0.0, std::min(i.end, range.end) - std::min(i.start, range.start));
+            double const coverage = std::max(0.0, std::min(i.end, s.range.end) - std::min(i.start, s.range.start));
             if (max_coverage < coverage) {
                 max_coverage = coverage;
                 max_index = index;
@@ -61,7 +61,7 @@ namespace help {
     }
 
     static bool
-    union_covers(problem const &s, interval range) {
+    union_covers(problem const &s) {
         double leftmost_endpoint, rightmost_endpoint;
         {
             for (ssize_t const i : s.indices) {
@@ -70,7 +70,7 @@ namespace help {
                 rightmost_endpoint = std::max(rightmost_endpoint, n.end);
             }
         }
-        return interval(leftmost_endpoint, rightmost_endpoint).covers(range);
+        return interval(leftmost_endpoint, rightmost_endpoint).covers(s.range);
     }
 
     static std::vector<interval> forward_difference(interval minuend, interval subtrahend) {
@@ -89,6 +89,46 @@ namespace help {
             resultants.push_back(right);
         }
         return resultants;
+    }
+}
+
+static std::list<ssize_t> interval_covers(help::problem &problem) {
+    // Block 1
+    auto const[s_i, s] = help::max_cover(problem);
+    auto const difference = help::forward_difference(problem.range, s);
+    if (help::strictly_disjoint(s, problem.range)) {
+        return std::list<ssize_t>();
+    }
+    // Block 2
+    if (s.covers(problem.range)) {
+        return std::list<ssize_t>{s_i};
+    }
+    // Block 3
+    if (problem.indices.empty()) {
+        return std::list<ssize_t>();
+    }
+    // Blocks 4-5 (concurrent execution possible)
+    std::list<ssize_t> left_sub, right_sub;
+    // Block 4 (left subproblem)
+    if (difference.size() > 0uL && difference.at(0).proper()) {
+        help::problem copy_problem(problem);
+        copy_problem.range = difference.at(0);
+        left_sub = interval_covers(problem);
+    }
+    // Block 5 (right subproblem)
+    if (difference.size() > 1uL && difference.at(1).proper()) {
+        help::problem copy_problem(problem);
+        copy_problem.range = difference.at(1);
+        right_sub = interval_covers(problem);
+    }
+    // Join: Blocks 4-5
+    left_sub.push_back(s_i);
+    left_sub.merge(right_sub);
+    help::problem p(problem.range, left_sub, problem.intervals);
+    if (help::union_covers(p)) {
+        return left_sub;
+    } else {
+        return std::list<ssize_t>();
     }
 }
 
