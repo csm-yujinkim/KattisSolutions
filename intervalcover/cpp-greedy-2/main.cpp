@@ -18,12 +18,12 @@ struct interval {
 };
 
 namespace help {
-    struct scratch {
+    struct problem {
         interval range;
         std::list<ssize_t> indices;
         std::vector<interval> const &intervals;
 
-        scratch(interval range,
+        problem(interval range,
                 std::list<ssize_t> indices,
                 std::vector<interval> const &intervals) : range(range),
                                                           indices(std::move(indices)),
@@ -34,7 +34,7 @@ namespace help {
     // is returned because said index will be removed. OR, remove it
     // right here.
     static std::pair<ssize_t, interval>
-    max_cover(scratch const &s, interval range) {
+    max_cover(problem const &s, interval range) {
         double max_coverage = -1.0;
         ssize_t max_index = -1L, index = 0L;
         for (interval i : s.intervals) {
@@ -53,7 +53,7 @@ namespace help {
     }
 
     static bool
-    union_covers(scratch const &s, interval range) {
+    union_covers(problem const &s, interval range) {
         double leftmost_endpoint, rightmost_endpoint;
         {
             for (ssize_t const i : s.indices) {
