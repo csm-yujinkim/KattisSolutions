@@ -154,7 +154,10 @@ int main() {
 
             // Construct & solve the problem
             help::problem p(range, indices, intervals);
-            auto const solution = interval_covers(p);
+            std::list<ssize_t> solution;
+            if (!intervals.empty()) {
+                solution = interval_covers(p);
+            }
 
             // Report the problem
             size_t const sol_n = solution.size();
