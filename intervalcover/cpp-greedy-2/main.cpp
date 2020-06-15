@@ -30,20 +30,28 @@ namespace help {
                                                           intervals(intervals) {}
     };
 
-    // It would be better if where the INDEX is stored (i.e. an iterator)
-    // is returned because said index will be removed. OR, remove it
-    // right here.
+    // Finds the element with the maximum intersection with range. Then,
+    // 1. Removes that index;
+    // 2. Returns the index (now invalid);
+    // 3. Returns what was stored at the index.
     static std::pair<ssize_t, interval>
-    max_cover(problem const &s, interval range) {
+    max_cover(problem &s, interval range) {
         double max_coverage = -1.0;
+        auto it = s.indices.begin();
+        auto max_it = s.indices.end();
         ssize_t max_index = -1L, index = 0L;
         for (interval i : s.intervals) {
             double const coverage = std::max(0.0, std::min(i.end, range.end) - std::min(i.start, range.start));
             if (max_coverage < coverage) {
                 max_coverage = coverage;
                 max_index = index;
+                max_it = it;
             }
+            ++it;
             ++index;
+        }
+        if (max_it != s.indices.end()) {
+            s.indices.erase(max_it);
         }
         return std::make_pair(max_index, s.intervals[max_index]);
     }
@@ -83,5 +91,4 @@ namespace help {
         return resultants;
     }
 }
-
 
