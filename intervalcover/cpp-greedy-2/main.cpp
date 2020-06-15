@@ -155,29 +155,39 @@ int main() {
                 std::cin >> sub_left >> sub_right;
                 interval sub(sub_left, sub_right);
                 multiply_million(sub);
-                if (sub.proper()) {
-                    intervals.push_back(sub);
-                    indices.push_back(i);
-                }
+                intervals.push_back(sub);
+                indices.push_back(i);
             }
 
             // Construct & solve the problem
             help::problem p(range, indices, intervals);
-            std::list<ssize_t> solution;
-            if (!intervals.empty()) {
-                solution = interval_covers(p);
-            }
-
-            // Report the problem
-            size_t const sol_n = solution.size();
-            if (sol_n) {
-                std::cout << sol_n << '\n';
-                for (auto const i : solution) {
-                    std::cout << i << ' ';
+            if (range.proper()) {
+                std::list<ssize_t> solution;
+                if (!intervals.empty()) {
+                    solution = interval_covers(p);
                 }
-                std::cout << '\n';
+
+                // Report the problem
+                size_t const sol_n = solution.size();
+                if (sol_n) {
+                    std::cout << sol_n << '\n';
+                    for (auto const i : solution) {
+                        std::cout << i << ' ';
+                    }
+                    std::cout << '\n';
+                } else {
+                    std::cout << "impossible\n";
+                }
             } else {
+                // If the range isn't proper, then we use a special routine.
+                for (auto const a : p.indices) {
+                    if (p.intervals[a].covers(p.range)) {
+                        std::cout << "1\n" << a << '\n';
+                        goto exit_inner_for;
+                    }
+                }
                 std::cout << "impossible\n";
+                exit_inner_for:;
             }
         } else {
             return 0;
