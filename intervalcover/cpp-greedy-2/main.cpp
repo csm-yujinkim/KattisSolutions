@@ -19,13 +19,20 @@ struct interval {
 
 namespace help {
     struct scratch {
+        interval range;
         std::list<ssize_t> indices;
-        std::vector<interval> const intervals;
+        std::vector<interval> const &intervals;
 
-        scratch(std::list<ssize_t> indices, std::vector<interval> intervals) : indices(std::move(indices)),
-                                                                               intervals(std::move(intervals)) {}
+        scratch(interval range,
+                std::list<ssize_t> indices,
+                std::vector<interval> const &intervals) : range(range),
+                                                          indices(std::move(indices)),
+                                                          intervals(intervals) {}
     };
 
+    // It would be better if where the INDEX is stored (i.e. an iterator)
+    // is returned because said index will be removed. OR, remove it
+    // right here.
     static std::pair<ssize_t, interval>
     max_cover(scratch const &s, interval range) {
         double max_coverage = -1.0;
@@ -76,4 +83,5 @@ namespace help {
         return resultants;
     }
 }
+
 
