@@ -40,7 +40,8 @@ namespace help {
         auto it = s.indices.begin();
         auto max_it = s.indices.end();
         ssize_t max_index = -1L, index = 0L;
-        for (interval i : s.intervals) {
+        for (auto const a : s.indices) {
+            interval const i = s.intervals[a];
             double const coverage = std::max(0.0, std::min(i.end, s.range.end) - std::max(i.start, s.range.start));
             if (max_coverage < coverage) {
                 max_coverage = coverage;
