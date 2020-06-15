@@ -173,8 +173,9 @@ int main() {
             if (sol_n) {
                 std::cout << sol_n << '\n';
                 for (auto const i : solution) {
-                    std::cout << i << '\n';
+                    std::cout << i << ' ';
                 }
+                std::cout << '\n';
             } else {
                 std::cout << "impossible\n";
             }
