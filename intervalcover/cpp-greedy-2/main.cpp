@@ -167,7 +167,7 @@ int main() {
                     solution = interval_covers(p);
                 }
 
-                // Report the problem
+                // Report the solution
                 size_t const sol_n = solution.size();
                 if (sol_n) {
                     std::cout << sol_n << '\n';
