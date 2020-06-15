@@ -57,8 +57,8 @@ namespace help {
         return std::make_pair(max_index, s.intervals[max_index]);
     }
 
-    static bool strictly_disjoint(interval a, interval b) {
-        return a.end < b.start || b.end < a.start;
+    static bool disjoint(interval a, interval b) {
+        return a.end <= b.start || b.end <= a.start;
     }
 
     static bool
@@ -80,6 +80,9 @@ namespace help {
     // Both the minuend and the subtrahend are assumed to be proper. (This is not checked.)
     // The resultants will also be proper.
     static std::vector<interval> forward_difference(interval minuend, interval subtrahend) {
+        if (disjoint(minuend, subtrahend)) {
+            return std::vector<interval>();
+        }
         interval const left(minuend.start, subtrahend.start);
         interval const right(subtrahend.end, minuend.end);
         std::vector<interval> resultants;
@@ -97,7 +100,7 @@ static std::list<ssize_t> interval_covers(help::problem &problem) {
     // Block 1
     auto const[s_i, s] = help::max_cover(problem);
     auto const difference = help::forward_difference(problem.range, s);
-    if (help::strictly_disjoint(s, problem.range)) {
+    if (help::disjoint(s, problem.range)) {
         return std::list<ssize_t>();
     }
     // Block 2
@@ -114,13 +117,13 @@ static std::list<ssize_t> interval_covers(help::problem &problem) {
     if (difference.size() > 0uL && difference.at(0).proper()) {
         help::problem copy_problem(problem);
         copy_problem.range = difference.at(0);
-        left_sub = interval_covers(problem);
+        left_sub = interval_covers(copy_problem);
     }
     // Block 5 (right subproblem)
     if (difference.size() > 1uL && difference.at(1).proper()) {
         help::problem copy_problem(problem);
         copy_problem.range = difference.at(1);
-        right_sub = interval_covers(problem);
+        right_sub = interval_covers(copy_problem);
     }
     // Join: Blocks 4-5
     left_sub.push_back(s_i);
@@ -133,6 +136,11 @@ static std::list<ssize_t> interval_covers(help::problem &problem) {
     }
 }
 
+static void multiply_million(interval &i) {
+    i.start *= 1000000;
+    i.end *= 1000000;
+}
+
 int main() {
     for (;;) {
         std::vector<interval> intervals;
@@ -141,11 +149,13 @@ int main() {
         size_t n;
         if (std::cin >> left >> right) {
             interval range(left, right);
+            multiply_million(range);
             std::cin >> n;
             for (ssize_t i = 0L; i < n; ++i) {
                 double sub_left, sub_right;
                 std::cin >> sub_left >> sub_right;
                 interval sub(sub_left, sub_right);
+                multiply_million(sub);
                 if (sub.proper()) {
                     intervals.push_back(sub);
                     indices.push_back(i);
