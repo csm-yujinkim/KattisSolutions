@@ -132,3 +132,41 @@ static std::list<ssize_t> interval_covers(help::problem &problem) {
     }
 }
 
+int main() {
+    for (;;) {
+        std::vector<interval> intervals;
+        std::list<ssize_t> indices;
+        double left, right;
+        size_t n;
+        if (std::cin >> left >> right) {
+            interval range(left, right);
+            std::cin >> n;
+            for (ssize_t i = 0L; i < n; ++i) {
+                double sub_left, sub_right;
+                std::cin >> sub_left >> sub_right;
+                interval sub(sub_left, sub_right);
+                if (sub.proper()) {
+                    intervals.push_back(sub);
+                    indices.push_back(i);
+                }
+            }
+
+            // Construct & solve the problem
+            help::problem p(range, indices, intervals);
+            auto const solution = interval_covers(p);
+
+            // Report the problem
+            size_t const sol_n = solution.size();
+            if (sol_n) {
+                std::cout << sol_n << '\n';
+                for (auto const i : solution) {
+                    std::cout << i << '\n';
+                }
+            } else {
+                std::cout << "impossible\n";
+            }
+        } else {
+            return 0;
+        }
+    }
+}
