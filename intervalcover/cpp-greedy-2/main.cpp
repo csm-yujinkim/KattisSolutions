@@ -73,12 +73,12 @@ namespace help {
         return interval(leftmost_endpoint, rightmost_endpoint).covers(s.range);
     }
 
+    // The subtrahend is subtracted FROM the minuend.
+    // The end result may be a list (vector) of 0, 1 or 2 intervals.
+    // If two intervals result, then the first one comes before (has lower coordinates) than the other.
+    // Both the minuend and the subtrahend are assumed to be proper. (This is not checked.)
+    // The resultants will also be proper.
     static std::vector<interval> forward_difference(interval minuend, interval subtrahend) {
-        // The subtrahend is subtracted FROM the minuend.
-        // The end result may be a list (vector) of 0, 1 or 2 intervals.
-        // If two intervals result, then the first one comes before (has lower coordinates) than the other.
-        // Both the minuend and the subtrahend are assumed to be proper. (This is not checked.)
-        // The resultants will also be proper.
         interval const left(minuend.start, subtrahend.start);
         interval const right(subtrahend.end, minuend.end);
         std::vector<interval> resultants;
