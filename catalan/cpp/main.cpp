@@ -25,11 +25,11 @@ namespace impl {
 
     static i128 make_catalan(i128 const x) {
         i128 const xm1 = x - 1ULL;
-        i128 sum = 0ULL;
-        for (i128 i = 0ULL; i < xm1; ++i) {
-            sum += catalan(i) + catalan(xm1 - i);
+        i128 prod = 0ULL;
+        for (i128 i = 0ULL; i <= xm1; ++i) {
+            prod += catalan(i) * catalan(xm1 - i);
         }
-        return sum;
+        return prod;
     }
 }
 
