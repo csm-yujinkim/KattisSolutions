@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <vector>
 
 typedef unsigned long long i128;
 
@@ -35,6 +36,21 @@ namespace impl {
 static i128 catalan(i128 x) { return impl::catalan(x); }
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    size_t q;
+    std::cin >> q;
+    std::vector<i128> xs, ys;
+    xs.reserve(q);
+    ys.reserve(q);
+    while (q--) {
+        i128 x;
+        std::cin >> x;
+        xs.push_back(x);
+    }
+    for (size_t i = 0UL; i < xs.size(); ++i) {
+        ys[i] = catalan(xs[i]);
+    }
+    for (i128 const y : ys) {
+        std::cout << y << '\n';
+    }
     return 0;
 }
