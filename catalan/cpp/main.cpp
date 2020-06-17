@@ -2,9 +2,24 @@
 #include <unordered_map>
 #include <vector>
 
-typedef unsigned long long u128;
+typedef unsigned __int128 u128;
+typedef uint64_t u64;
 
 namespace impl {
+    //https://stackoverflow.com/questions/11656241/how-to-print-uint128-t-number-using-gcc
+    //            UINT64_MAX   18446744073709551615ULL
+    u64 constexpr P10_UINT64 = 10000000000000000000ULL; /* 19 zeros */
+    static void print_u128(u128 x) {
+        if (x > UINT64_MAX) {
+            u128 leading = x / P10_UINT64;
+            u64 trailing = x % P10_UINT64;
+            print_u128(leading);
+            std::cout << trailing;
+        } else {
+            std::cout << static_cast<u64>(x);
+        }
+    }
+
     static std::unordered_map<u128, u128> catalan_memo {
             {0ULL, 1ULL}
     };
@@ -29,6 +44,7 @@ namespace impl {
         for (u128 i = 0ULL; i <= xm1; ++i) {
             prod += catalan(i) * catalan(xm1 - i);
         }
+        std::cout << "make_catalan(" << x << ") = " << prod << '\n';
         return prod;
     }
 }
