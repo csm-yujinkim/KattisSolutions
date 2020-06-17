@@ -46,8 +46,8 @@ int main() {
         std::cin >> x;
         xs.push_back(x);
     }
-    for (size_t i = 0UL; i < xs.size(); ++i) {
-        ys[i] = catalan(xs[i]);
+    for (i128 const x : xs) {
+        ys.push_back(catalan(x));
     }
     for (i128 const y : ys) {
         std::cout << y << '\n';
