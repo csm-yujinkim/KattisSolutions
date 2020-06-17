@@ -44,7 +44,6 @@ namespace impl {
         for (u128 i = 0ULL; i <= xm1; ++i) {
             prod += catalan(i) * catalan(xm1 - i);
         }
-        std::cout << "make_catalan(" << x << ") = " << prod << '\n';
         return prod;
     }
 }
@@ -58,15 +57,16 @@ int main() {
     xs.reserve(q);
     ys.reserve(q);
     while (q--) {
-        u128 x;
+        u64 x;
         std::cin >> x;
-        xs.push_back(x);
+        xs.push_back(static_cast<u128>(x));
     }
     for (u128 const x : xs) {
         ys.push_back(catalan(x));
     }
     for (u128 const y : ys) {
-        std::cout << y << '\n';
+        impl::print_u128(y);
+        std::cout << '\n';
     }
     return 0;
 }
