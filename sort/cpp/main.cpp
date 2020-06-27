@@ -1,28 +1,36 @@
 #include <vector>
 #include <set>
 #include <map>
+#include <memory>
 #include <algorithm>
 #include <iostream>
 
 typedef std::vector<unsigned> vector;
 
 struct compare {
-    std::multiset<unsigned> bag;
-    std::map<unsigned, size_t> indices;
+private:
+    struct vector_context {
+        std::multiset<unsigned> bag;
+        std::map<unsigned, size_t> indices;
+    };
 
-    explicit compare(vector const &xs) {
+    std::shared_ptr<vector_context> context;
+
+public:
+    explicit compare(vector const &xs) : context(new vector_context) {
         for (size_t i = 0u; i < xs.size(); ++i) {
             unsigned const x = xs[i];
-            bag.insert(x);
-            if (!indices.count(x)) {
-                indices[x] = i;
+            context->bag.insert(x);
+            if (!context->indices.count(x)) {
+                context->indices[x] = i;
             }
         }
     }
 
     [[nodiscard]] bool operator()(unsigned x, unsigned y) const {
-        return bag.count(x) > bag.count(y)
-               || (bag.count(x) == bag.count(y) && indices.at(x) < indices.at(y));
+        return context->bag.count(x) > context->bag.count(y)
+               || (context->bag.count(x) == context->bag.count(y)
+                   && context->indices.at(x) < context->indices.at(y));
     }
 };
 
